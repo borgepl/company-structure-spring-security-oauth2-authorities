@@ -8,7 +8,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Profile("test") // to make sure it is active only if h2 profile is active
+@Profile("dev") // to make sure it is active only if h2 profile is active
 @Order(SecurityProperties.BASIC_AUTH_ORDER - 11)
 @Configuration
 @ConditionalOnProperty( //to make sure it is active if console is enabled
