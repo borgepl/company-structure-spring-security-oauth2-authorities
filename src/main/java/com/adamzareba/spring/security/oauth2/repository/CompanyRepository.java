@@ -1,22 +1,9 @@
 package com.adamzareba.spring.security.oauth2.repository;
 
 import com.adamzareba.spring.security.oauth2.model.Company;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
+public interface CompanyRepository extends CrudRepository<Company, Long> {
 
-public interface CompanyRepository {
-
-    Company find(Long id);
-
-    Company find(String name);
-
-    List<Company> findAll();
-
-    void create(Company company);
-
-    Company update(Company company);
-
-    void delete(Long id);
-
-    void delete(Company company);
+    Company findByName(String name);
 }

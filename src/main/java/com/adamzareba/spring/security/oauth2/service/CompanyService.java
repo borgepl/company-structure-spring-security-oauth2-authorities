@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CompanyService {
 
-    Company get(Long id);
+    Object get(Long id);
 
     Company get(String name);
 

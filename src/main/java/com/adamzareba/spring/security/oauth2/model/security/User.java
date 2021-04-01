@@ -1,32 +1,16 @@
 package com.adamzareba.spring.security.oauth2.model.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
 @Table(name = "USER_", uniqueConstraints = { @UniqueConstraint(columnNames = { "USER_NAME" }) })
-@Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 public class User implements UserDetails, Serializable {
@@ -73,5 +57,37 @@ public class User implements UserDetails, Serializable {
     @Override
     public boolean isCredentialsNonExpired() {
         return !isCredentialsExpired();
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public boolean isAccountExpired() {
+        return this.accountExpired;
+    }
+
+    public boolean isAccountLocked() {
+        return this.accountLocked;
+    }
+
+    public boolean isCredentialsExpired() {
+        return this.credentialsExpired;
+    }
+
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+
+    public Collection<Authority> getAuthorities() {
+        return this.authorities;
     }
 }
